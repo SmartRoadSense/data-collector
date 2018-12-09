@@ -1,0 +1,10 @@
+*.userprefs
+**/.metadata/**
+**/.recommenders/**
+**/.vs/**
+**/bin/**
+**/obj/**
+**/packages/**
+*.suo
+*.csproj.user
+*.lock.json
