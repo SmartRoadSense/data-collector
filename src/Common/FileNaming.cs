@@ -9,16 +9,16 @@ namespace DataCollector {
 
     public static class FileNaming {
 
-        public static string GenerateFilename(string addendum) {
+        private static string GenerateFilename(string addendum) {
             if(!string.IsNullOrWhiteSpace(addendum)) {
-                addendum = "-" + addendum.Replace(' ', '-');
+                addendum = "-" + addendum.Replace(' ', '-').ToLowerInvariant();
             }
 
             return string.Format("{0:yyyy}-{0:MM}-{0:dd}-{0:HH}-{0:mm}-{0:ss}{1}.csv",
                 DateTime.Now, addendum);
         }
 
-        public static FileStream OpenDumpFile(string addendum) {
+        public static (FileStream Stream, bool NewFile) OpenDumpFile(string addendum) {
             var filename = GenerateFilename(addendum);
             Debug.WriteLine("New filename: {0}", filename);
 
@@ -28,10 +28,12 @@ namespace DataCollector {
 #error Unsupported platform
 #endif
 
-            var filePath = Path.Combine(basePath, "dump", filename);
+            var filePath = Path.Combine(basePath, filename);
             Debug.WriteLine("Opening file {0} for append", filePath);
 
-            return new FileStream(filePath, FileMode.Append);
+            bool exists = File.Exists(filePath);
+
+            return (new FileStream(filePath, FileMode.Append), !exists);
         }
 
     }
