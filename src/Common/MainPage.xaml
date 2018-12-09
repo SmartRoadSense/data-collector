@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataCollector"
+             x:Class="DataCollector.MainPage">
+
+    <StackLayout
+        VerticalOptions="Start"
+        >
+        <Label
+            Text="Data Collector"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Margin="0,24,0,24"
+            />
+        <Button
+            x:Name="StartButton"
+            Text="Start"
+            />
+        <Button
+            x:Name="StopButton"
+            Text="Stop"
+            />
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            Margin="0,8,0,24"
+            >
+            <Label
+                Text="File name base:"
+                Margin="0,0,8,0"
+                />
+            <Editor
+                x:Name="FilenameBaseEditor"
+                HorizontalOptions="FillAndExpand"
+                />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
