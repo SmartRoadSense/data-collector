@@ -18,6 +18,7 @@
             x:Name="StartButton"
             Text="Start"
             Command="{Binding Path=StartCommand}"
+            CommandParameter="{Binding Source={x:Reference FilenameBaseEditor}, Path=Text}"
             IsVisible="{Binding Path=IsRecording, Converter={StaticResource InvertBooleanConverter}}"
             />
         <Button
@@ -44,6 +45,27 @@
                 VerticalOptions="Center"
                 />
         </StackLayout>
+
+        <Label
+            Text="Sensor samplings"
+            FontSize="Small"
+            />
+        <Label
+            Text="{Binding Path=Count}"
+            HorizontalOptions="Center"
+            FontSize="Large"
+            Margin="0,0,0,12"
+            />
+
+        <Label
+            Text="Elapsed time"
+            FontSize="Small"
+            />
+        <Label
+            Text="{Binding Path=ElapsedTime, StringFormat={StaticResource FormatTimeSpan}}"
+            HorizontalOptions="Center"
+            FontSize="Large"
+            />
     </StackLayout>
 
 </ContentPage>

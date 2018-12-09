@@ -6,5 +6,7 @@
              >
     <Application.Resources>
         <converter:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+
+        <x:String x:Key="FormatTimeSpan">{0:hh\:mm\:ss}</x:String>
     </Application.Resources>
 </Application>

@@ -34,9 +34,6 @@ namespace DataCollector {
                 return;
             }
 
-            Debug.WriteLine("Tick");
-            SensorsUpdated?.Invoke(this, EventArgs.Empty);
-
             _output.WriteLine(string.Format(
                 CultureInfo.InvariantCulture,
                 "{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},",
@@ -52,14 +49,23 @@ namespace DataCollector {
                 Reading.GyroY,
                 Reading.GyroZ
             ));
+
+            _count++;
+
+            SensorsUpdated?.Invoke(this, new SensorsUpdatedEventArgs {
+                Count = _count,
+                ElapsedTime = DateTime.Now.Subtract(_start)
+            });
         }
 
-        public void Start() {
+        public void Start(string fileNameAddendum = null) {
             if(StartPlatform()) {
                 IsRecording = true;
                 RecordingStatusUpdated?.Invoke(this, EventArgs.Empty);
 
-                StartWritingFile(null);
+                _start = DateTime.Now;
+
+                StartWritingFile(fileNameAddendum);
 
                 _timer.Change(TimerInterval, TimerInterval);
             }
@@ -85,7 +91,7 @@ namespace DataCollector {
             _output = new StreamWriter(fs);
 
             if(isNew) {
-                _output.WriteLine("Provider,Latitude,Longitude,Speed,Accuracy,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,"),
+                _output.WriteLine("Provider,Latitude,Longitude,Speed,Accuracy,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,");
             }
         }
 
@@ -98,7 +104,10 @@ namespace DataCollector {
 
         public bool IsRecording { get; private set; }
 
-        public event EventHandler SensorsUpdated;
+        private long _count = 0;
+        private DateTime _start = DateTime.Now;
+
+        public event EventHandler<SensorsUpdatedEventArgs> SensorsUpdated;
 
         public event EventHandler RecordingStatusUpdated;
 

@@ -22,6 +22,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)SensorPack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SensorReading.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SensorsUpdatedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\InvertBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
