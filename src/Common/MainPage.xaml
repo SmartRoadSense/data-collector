@@ -37,22 +37,25 @@
                 Text="File name base:"
                 Margin="0,0,8,0"
                 HorizontalOptions="Start"
-                VerticalOptions="End"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center"
                 />
             <Editor
                 x:Name="FilenameBaseEditor"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="Center"
+                VerticalOptions="End"
                 />
         </StackLayout>
 
         <Label
             Text="Sensor samplings"
             FontSize="Small"
+            HorizontalOptions="Center"
             />
         <Label
             Text="{Binding Path=Count}"
-            HorizontalOptions="Center"
+            HorizontalOptions="Fill"
+            HorizontalTextAlignment="Center"
             FontSize="Large"
             Margin="0,0,0,12"
             />
@@ -60,10 +63,12 @@
         <Label
             Text="Elapsed time"
             FontSize="Small"
+            HorizontalOptions="Center"
             />
         <Label
             Text="{Binding Path=ElapsedTime, StringFormat={StaticResource FormatTimeSpan}}"
-            HorizontalOptions="Center"
+            HorizontalOptions="Fill"
+            HorizontalTextAlignment="Center"
             FontSize="Large"
             />
     </StackLayout>
