@@ -6,6 +6,7 @@
 
     <StackLayout
         VerticalOptions="Start"
+        HorizontalOptions="Fill"
         >
         <Label
             Text="Data Collector"
@@ -16,23 +17,31 @@
         <Button
             x:Name="StartButton"
             Text="Start"
+            Command="{Binding Path=StartCommand}"
+            IsVisible="{Binding Path=IsRecording, Converter={StaticResource InvertBooleanConverter}}"
             />
         <Button
             x:Name="StopButton"
             Text="Stop"
+            Command="{Binding Path=StopCommand}"
+            IsVisible="{Binding Path=IsRecording}"
             />
         <StackLayout
-            HorizontalOptions="FillAndExpand"
+            HorizontalOptions="Fill"
             VerticalOptions="Start"
+            Orientation="Horizontal"
             Margin="0,8,0,24"
             >
             <Label
                 Text="File name base:"
                 Margin="0,0,8,0"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
                 />
             <Editor
                 x:Name="FilenameBaseEditor"
                 HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
                 />
         </StackLayout>
     </StackLayout>

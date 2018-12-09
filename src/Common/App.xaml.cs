@@ -7,8 +7,12 @@ namespace DataCollector {
 
     public partial class App : Application {
 
+        public SensorPack Sensors { get; private set; }
+
         public App() {
             InitializeComponent();
+
+            Sensors = new SensorPack();
 
             MainPage = new MainPage();
         }
@@ -23,6 +27,10 @@ namespace DataCollector {
 
         protected override void OnResume() {
             OnResumePlatform();
+        }
+
+        public static SensorPack GetSensors() {
+            return ((App)App.Current).Sensors;
         }
 
     }
